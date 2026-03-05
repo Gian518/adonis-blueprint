@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-family: "Inter", sans-serif;
+  /* base background + glow layer */
+  background-color: #162B18;
+  background-image: radial-gradient(
+    circle at center,
+    rgba(19, 236, 91, 0.4) 0%,
+    rgba(22, 43, 24, 0.8) 80%
+  );
+  background-blend-mode: screen;
+  transition: background 0.3s ease;
+}
+
+/* light mode overrides using the constants from theme */
+@media (prefers-color-scheme: light) {
+  html,
+  body {
+    background-color: #bbe2c3;
+    /* layered and textured glow for a richer effect */
+    background-image:
+      radial-gradient(farthest-corner at 30% 30%,
+        rgba(19, 236, 91, 0.8) 0%,
+        rgba(11, 135, 56, 0.6) 40%,
+        rgba(19, 236, 91, 0.6) 60%,
+        rgba(19, 236, 91, 0.3) 100%
+      ),
+      radial-gradient(farthest-corner at 70% 70%,
+        rgba(19, 236, 91, 0.7) 0%,
+        rgba(11, 135, 56, 0.5) 30%,
+        rgba(19, 236, 91, 0.2) 80%
+      );
+    background-blend-mode: overlay, multiply;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html,
+  body {
+    background-color: #162B18;
+    background-image: radial-gradient(
+      circle at center,
+      rgba(19, 236, 91, 0.4) 0%,
+      rgba(22, 43, 24, 0.8) 80%
+    );
+    background-blend-mode: screen;
+  }
+}
+
+/* Ant Design overrides (that cannot be set in theme constants) */
+.ant-segmented-thumb{
+  height: 48px !important;
+  margin: 4px !important;
+  padding: 10px !important;
+  border-radius: 12px !important;
+}
