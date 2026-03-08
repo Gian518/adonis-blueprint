@@ -27,12 +27,7 @@ createInertiaApp({
 		createRoot(el).render(
 			<ThemeWrapper>
 				<Layout>
-					<Content
-						style={{
-							height: '100vh',
-							overflow: 'hidden',
-						}}
-					>
+					<Content>
 						<App {...props} />
 					</Content>
 				</Layout>
