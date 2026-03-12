@@ -171,3 +171,12 @@ export function mux(
 
 	return (slotConfig?: Record<string, string>) => factory(slotConfig, bp)
 }
+
+/**
+ * A simple function that merges more styles together
+ * @param args CSSProperties different objects to merge together
+ * @returns The merged style
+ */
+export const cx = (...args: CSSProperties[]) => {
+	return args.reduce((acc, arg) => ({ ...acc, ...arg }), {})
+}
