@@ -28,7 +28,7 @@ const Login = () => {
 		<>
 			<Row style={container}>
 				<Col md={{ span: 12, offset: 6 }}>
-					<GlassCard style={glassContainer}>
+					<GlassCard innerStyle={glassContainer}>
 						{/* Logo */}
 						<img src={logo} alt='Logo' width={96} />
 						{/* Title */}

@@ -1,5 +1,8 @@
 import axios from 'axios'
-import { TRegister } from '~/models/api'
+import { TChangePassword, TChangePersonalData, TRegister } from '~/models/api'
+import { statics } from '~/utility/snacks'
+
+const { apiError } = statics
 
 export const login = async (data: { username: string; password: string }) => {
 	try {
@@ -30,5 +33,25 @@ export const logout = async () => {
 		return res.data
 	} catch (error) {
 		console.error('Error in UsersController.logout:', error)
+	}
+}
+
+export const changePersonalData: TChangePersonalData = async (data) => {
+	try {
+		const res = await axios.post('/api/change-personal-data', data, { withCredentials: true })
+		return res.data
+	} catch (error) {
+		console.error('Error in UsersController.changePersonalData:', error)
+		return apiError(error)
+	}
+}
+
+export const changePassword: TChangePassword = async (data) => {
+	try {
+		const res = await axios.post('/api/change-password', data, { withCredentials: true })
+		return res.data
+	} catch (error) {
+		console.error('Error in UsersController.changePassword:', error)
+		return apiError(error)
 	}
 }

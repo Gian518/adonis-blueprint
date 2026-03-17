@@ -11,6 +11,10 @@ shared:
         unique: Questo indirizzo E-Mail è già stato usato
     password:
       minLength: La password deve includere almeno 8 caratteri
+    currentPassword:
+      passwordMismatch: La password inserita è errata
+    newPassword:
+      minLength: La password deve includere almeno 8 caratteri
     confirmPassword:
       minLength: La password deve includere almeno 8 caratteri
       sameAs: Le password non corrispondono

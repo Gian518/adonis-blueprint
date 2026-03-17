@@ -1,5 +1,5 @@
 import User from '#models/user'
-import { createUserValidator } from '#validators/user'
+import { createUserValidator, passwordChangeValidator, personalDataValidator } from '#validators/user'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class UsersController {
@@ -46,8 +46,60 @@ export default class UsersController {
 		}
 	}
 
+	/**
+	 * Perform a logout
+	 */
 	async logout({ response, auth }: HttpContext) {
 		await auth.use('web').logout()
 		return response.redirect('/')
+	}
+
+	/**
+	 * Change user personal data
+	 */
+	async changePersonalData({ request, response, auth }: HttpContext) {
+		if (!auth.user) {
+			throw 'Invalid user'
+		}
+		const data = await request.validateUsing(personalDataValidator, { meta: { userId: auth.user.id } })
+
+		try {
+			const user = auth.user
+			if (!user) {
+				throw 'Invalid user'
+			}
+
+			user.fullName = data.fullName
+			user.username = data.username
+			user.email = data.email
+			user.save()
+
+			response.status(200).send({ success: true, user })
+		} catch (error) {
+			response.status(401).send({ error: true, message: error.code })
+		}
+	}
+
+	async changePassword({ request, response, auth }: HttpContext) {
+		if (!auth.user) {
+			throw 'Invalid user'
+		}
+		const data = await request.validateUsing(passwordChangeValidator, { meta: { id: auth.user.id } })
+
+		try {
+			const user = auth.user
+			if (!user) {
+				throw 'Invalid user'
+			}
+			if (!user.verifyPassword(data.currentPassword)) {
+				throw 'Invalid password'
+			}
+
+			user.password = data.newPassword
+			user.save()
+			response.status(200).send({ success: true })
+		} catch (error) {
+			response.status(403).send({ error: true, message: error.code })
+		}
 	}
 }

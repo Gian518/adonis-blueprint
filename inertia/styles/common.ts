@@ -9,6 +9,10 @@ const common = () => {
 			justifyContent: 'center',
 			padding: '24px 16px',
 		}),
+		standardFlex: css({
+			display: 'flex',
+			flexDirection: 'column',
+		}),
 		w100: css({
 			width: '100%',
 		}),
@@ -17,6 +21,12 @@ const common = () => {
 		}),
 		mt32: css({
 			marginTop: 32,
+		}),
+		mb16: css({
+			marginBottom: 16,
+		}),
+		mb32: css({
+			marginBottom: 32,
 		}),
 	}
 }

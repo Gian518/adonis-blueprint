@@ -1,5 +1,5 @@
 import { theme } from 'antd'
-import { css } from '~/utility/css'
+import { css, vss } from '~/utility/css'
 
 const account = () => {
 	const { useToken } = theme
@@ -9,6 +9,16 @@ const account = () => {
 		pageTitle: css({
 			fontSize: 20,
 			fontWeight: 'bold',
+		}),
+		editButton: vss({
+			color: token.Button?.textTextColor,
+		}, {
+			editing: {
+				true: {
+					color: token.colorPrimary,
+					backgroundColor: token.colorBgBase,
+				},
+			},
 		}),
 		avatar: css({
 			marginTop: 32,
@@ -20,13 +30,43 @@ const account = () => {
 			color: token.colorPrimary,
 			backgroundColor: token.colorBgBase,
 		}),
-		username: css({
+		fullName: css({
+			marginTop: 16,
+			marginBottom: 0,
 			fontSize: 24,
 			fontWeight: 'bold',
 		}),
-		email: css({
+		username: css({
 			fontSize: 16,
 			color: token.colorTextTertiary,
+		}),
+		sectionTitle: css({
+			marginTop: 16,
+			color: token.colorPrimary,
+			fontWeight: 600,
+		}),
+		input: vss({
+			marginTop: 4.5,
+			borderColor: '#FFFFFF0A',
+		}, {
+			disabled: {
+				true: {
+					color: '#ffffffa5',
+				},
+			},
+		}),
+		inputIcon: vss({
+			marginRight: 4,
+		}, {
+			disabled: {
+				true: {
+					color: '#ffffffa5',
+				},
+			},
+		}),
+		saveButton: css({
+			width: '100%',
+			marginTop: 16,
 		}),
 	}
 }

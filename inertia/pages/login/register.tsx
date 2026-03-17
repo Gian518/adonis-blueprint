@@ -4,12 +4,12 @@ import { Button, Input, message, Typography } from 'antd'
 import { register } from '~/api'
 import styles from '~/styles'
 import useI18n from '~/utility/i18n'
-import snacks from '~/utility/snacks'
+import { hooks } from '~/utility/snacks'
 
 const Register = () => {
 	/* HOOKS */
 	const { t } = useI18n()
-	const { fakeHandleRandomizer } = snacks()
+	const { fakeHandleRandomizer } = hooks()
 	const [messageApi, contextHolder] = message.useMessage()
 	const { data, setData, processing, errors, setError, clearErrors } = useForm({
 		fullName: '',
@@ -105,7 +105,7 @@ const Register = () => {
 				{t('account.login.password')}
 			</Typography.Text>
 			<Input.Password
-				placeholder='********'
+				placeholder='••••••••'
 				variant='filled'
 				style={input}
 				prefix={<LockOutlined style={icon} height={'17px'} />}
@@ -120,7 +120,7 @@ const Register = () => {
 				{t('account.register.confirmpassword')}
 			</Typography.Text>
 			<Input.Password
-				placeholder='********'
+				placeholder='••••••••'
 				variant='filled'
 				style={input}
 				prefix={<LockOutlined style={icon} height={'17px'} />}

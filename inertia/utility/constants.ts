@@ -31,6 +31,7 @@ const BASE_INPUT_STYLES: NonNullable<ThemeConfig['components']>['Input'] = {
 	colorFillTertiary: '#FFFFFF33',
 	colorErrorBg: '#531a1a8d',
 	colorErrorBgHover: '#FFFFFF33',
+	colorBgContainerDisabled: '#00000033',
 }
 
 export const THEME_COLORS: {
@@ -79,6 +80,7 @@ export const THEME_COLORS: {
 				colorFillTertiary: '#00000033',
 				colorErrorBgHover: '#00000033',
 				colorErrorBg: '#410a0a3a',
+				colorBgContainerDisabled: '#FFFFFF11',
 			},
 		},
 	},

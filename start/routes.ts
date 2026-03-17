@@ -19,7 +19,14 @@ router.on('/').renderInertia('home').use(middleware.auth())
 router.on('/account').renderInertia('account').use(middleware.auth())
 
 router.group(() => {
-	router.post('/register', new UsersController().register)
-	router.post('/login', new UsersController().login)
-	router.post('/logout', new UsersController().logout)
+	router.group(() => {
+		router.post('/register', new UsersController().register)
+		router.post('/login', new UsersController().login)
+	}).use(middleware.guest())
+
+	router.group(() => {
+		router.post('/logout', new UsersController().logout)
+		router.post('/change-personal-data', new UsersController().changePersonalData)
+		router.post('/change-password', new UsersController().changePassword)
+	}).use(middleware.auth())
 }).prefix('/api')

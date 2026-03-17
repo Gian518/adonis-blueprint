@@ -4,7 +4,7 @@ import { Button, Input, message, Typography } from 'antd'
 import { login } from '~/api/UsersController'
 import styles from '~/styles'
 import useI18n from '~/utility/i18n'
-import snacks from '~/utility/snacks'
+import { hooks } from '~/utility/snacks'
 
 const Signin = () => {
 	/* HOOKS */
@@ -14,7 +14,7 @@ const Signin = () => {
 		password: '',
 	})
 	const [messageApi, contextHolder] = message.useMessage()
-	const { fakeHandleRandomizer } = snacks()
+	const { fakeHandleRandomizer } = hooks()
 
 	/* STYLES */
 	const {

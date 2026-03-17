@@ -1,7 +1,8 @@
+import axios, { AxiosError } from 'axios'
 import { useEffect, useState } from 'react'
 import useI18n from './i18n'
 
-const snacks = () => {
+export const hooks = () => {
 	/* HOOKS */
 	const { t } = useI18n()
 
@@ -40,4 +41,15 @@ const snacks = () => {
 	}
 }
 
-export default snacks
+export const statics = {
+	/**
+	 * Checks if the error is Axios and return data from APIs
+	 * @param error The error to return
+	 * @returns Data from APIs
+	 */
+	apiError: (error: AxiosError<any, any>) => {
+		if (axios.isAxiosError(error) && error.response) {
+			return error.response.data
+		}
+	},
+}

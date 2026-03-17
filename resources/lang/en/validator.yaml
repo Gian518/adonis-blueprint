@@ -11,6 +11,10 @@ shared:
         unique: This E-Mail address has already been taken
     password:
       minLength: Password must have at least 8 characters
+    currentPassword:
+      passwordMismatch: Current password is wrong
+    newPassword:
+      minLength: Password must have at least 8 characters
     confirmPassword:
       minLength: Password must have at least 8 characters
       sameAs: Passwords don't match

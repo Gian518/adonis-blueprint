@@ -177,6 +177,10 @@ export function mux(
  * @param args CSSProperties different objects to merge together
  * @returns The merged style
  */
-export const cx = (...args: CSSProperties[]) => {
-	return args.reduce((acc, arg) => ({ ...acc, ...arg }), {})
+export const cx = (...args: (CSSProperties | undefined)[]) => {
+	return args.reduce((acc, arg) => {
+		if (!arg) return acc
+
+		return { ...acc, ...arg }
+	}, {})
 }

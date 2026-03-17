@@ -23,3 +23,11 @@ register:
 profile:
   pagename: Profilo
   edit: Modifica
+  personaldetails: Dettagli personali
+  savedetails: Salva dettagli personali
+  currentpassword: Password attuale
+  newpassword: Nuova password
+  changepassword: Cambia password
+  accountupdated: Account aggiornato
+  passwordchanged: La password è stata aggiornata
+  invalidpassword: La password attuale non è corretta

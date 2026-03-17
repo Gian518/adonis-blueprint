@@ -10,7 +10,7 @@ const login = () => {
 			display: 'flex',
 			flexDirection: 'column',
 			alignItems: 'center',
-			padding: '0 24px 16px',
+			paddingTop: 0,
 		}),
 		heading: css({
 			fontSize: '24px',
@@ -41,7 +41,6 @@ const login = () => {
 			display: 'flex',
 			flexDirection: 'column',
 			marginTop: 24,
-			padding: { xl: '0 150px' },
 		}),
 		icon: css({
 			marginRight: 4,
