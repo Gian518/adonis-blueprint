@@ -1,9 +1,9 @@
 import User from '#models/user'
-import { IdcardOutlined, LockOutlined, MailOutlined, UserOutlined } from '@ant-design/icons'
+import { IdcardOutlined, LockOutlined, LogoutOutlined, MailOutlined, UserOutlined } from '@ant-design/icons'
 import { Head, router, useForm } from '@inertiajs/react'
 import { Avatar, Button, Col, Flex, Input, message, Row, Typography } from 'antd'
 import { useEffect, useState } from 'react'
-import { changePassword, changePersonalData } from '~/api'
+import { changePassword, changePersonalData, logout } from '~/api'
 import GlassCard from '~/components/glass-card'
 import styles from '~/styles'
 import { css, cx } from '~/utility/css'
@@ -19,9 +19,10 @@ export const Account = ({ user }: IProps) => {
 
 	/* HOOKS */
 	const { t } = useI18n()
-	const { container, standardFlex, mt16, mt32, w100 } = styles.common()
-	const { pageTitle, editButton, avatar, icon, fullName, username, sectionTitle, input, inputIcon } = styles
+	const { container, standardFlex, mt16, mt32, w100, h100 } = styles.common()
+	const { pageTitle, editButton, avatar, icon, fullName, username, sectionTitle, input, inputIcon, exitButton } = styles
 		.account()
+	const { ghosted, danger } = styles.button()
 	const [messageApi, contextHolder] = message.useMessage()
 	const {
 		data: personalData,
@@ -116,6 +117,20 @@ export const Account = ({ user }: IProps) => {
 						content: error.message,
 					})
 				})
+			}
+		} catch (error) {
+			messageApi.error(t('generic.genericerror'))
+			console.error('Error in Account component:', error)
+		}
+	}
+
+	const handleLogout = async () => {
+		try {
+			const response = await logout()
+			if (response.success) {
+				router.visit('/')
+			} else {
+				throw response.message
 			}
 		} catch (error) {
 			messageApi.error(t('generic.genericerror'))
@@ -227,6 +242,18 @@ export const Account = ({ user }: IProps) => {
 								</>
 							)}
 					</GlassCard>
+
+					{!isEditing
+						&& (
+							<Button
+								color='danger'
+								style={cx(w100, h100, mt16, ghosted, danger, exitButton)}
+								icon={<LogoutOutlined size={16} />}
+								onClick={() => handleLogout()}
+							>
+								{t('account.profile.logout')}
+							</Button>
+						)}
 
 					{isEditing
 						&& (

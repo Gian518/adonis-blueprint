@@ -50,8 +50,12 @@ export default class UsersController {
 	 * Perform a logout
 	 */
 	async logout({ response, auth }: HttpContext) {
-		await auth.use('web').logout()
-		return response.redirect('/')
+		try {
+			await auth.use('web').logout()
+			return { success: true }
+		} catch (error) {
+			response.status(500).send({ error: true, message: error.code })
+		}
 	}
 
 	/**

@@ -31,3 +31,4 @@ profile:
   accountupdated: Account updated
   passwordchanged: Password correctly changed
   invalidpassword: Current password is not valid
+  logout: Log out

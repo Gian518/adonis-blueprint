@@ -64,7 +64,7 @@ export const THEME_COLORS: {
 			colorTextPlaceholder: '#64748B',
 			colorBorder: '#333333',
 			colorBgContainer: '#1A1A1A',
-			colorErrorText: '#b80d10',
+			colorErrorText: '#da6262',
 		},
 		components: {
 			Button: {

@@ -13,9 +13,16 @@ const common = () => {
 			display: 'flex',
 			flexDirection: 'column',
 		}),
+
+		// Width/Height
 		w100: css({
 			width: '100%',
 		}),
+		h100: css({
+			height: '100%',
+		}),
+
+		// Margins
 		mt16: css({
 			marginTop: 16,
 		}),

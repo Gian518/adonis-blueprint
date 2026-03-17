@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { TChangePassword, TChangePersonalData, TRegister } from '~/models/api'
+import { TChangePassword, TChangePersonalData, TLogout, TRegister } from '~/models/api'
 import { statics } from '~/utility/snacks'
 
 const { apiError } = statics
@@ -27,7 +27,7 @@ export const register: TRegister = async (
 	}
 }
 
-export const logout = async () => {
+export const logout: TLogout = async () => {
 	try {
 		const res = await axios.post('/api/logout', {}, { withCredentials: true })
 		return res.data

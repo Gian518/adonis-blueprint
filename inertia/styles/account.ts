@@ -68,6 +68,10 @@ const account = () => {
 			width: '100%',
 			marginTop: 16,
 		}),
+		exitButton: css({
+			padding: 12,
+			fontSize: 16,
+		}),
 	}
 }
 

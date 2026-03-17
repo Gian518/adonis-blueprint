@@ -21,7 +21,7 @@ export type TLogin = (
 	payload: { username: string; password: string },
 ) => Promise<{ success: boolean; message?: string }>
 
-export type TLogout = () => Promise<{ success: boolean; message?: string }>
+export type TLogout = () => Promise<{ success: boolean; error?: boolean; message?: string }>
 
 type TChangePersonalDataPayload = {
 	fullName: string
