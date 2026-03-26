@@ -3,6 +3,7 @@ import { IdcardOutlined, LockOutlined, LogoutOutlined, MailOutlined, UserOutline
 import { Head, router, useForm } from '@inertiajs/react'
 import { Avatar, Button, Col, Flex, Input, message, Row, Typography } from 'antd'
 import { useEffect, useState } from 'react'
+import OneSignal from 'react-onesignal'
 import { changePassword, changePersonalData, logout } from '~/api'
 import GlassCard from '~/components/glass-card'
 import styles from '~/styles'
@@ -128,6 +129,7 @@ export const Account = ({ user }: IProps) => {
 		try {
 			const response = await logout()
 			if (response.success) {
+				await OneSignal.logout()
 				router.visit('/')
 			} else {
 				throw response.message

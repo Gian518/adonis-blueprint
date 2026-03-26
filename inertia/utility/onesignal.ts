@@ -15,6 +15,10 @@ export const setupOneSignal = async (oneSignalAppID: string) => {
 				appId: oneSignalAppID,
 				allowLocalhostAsSecureOrigin: true,
 				autoResubscribe: true,
+				welcomeNotification: {
+					disable: true,
+					message: '',
+				},
 			})
 			await OneSignal.Debug.setLogLevel('trace')
 

@@ -2,14 +2,20 @@ import { Head } from '@inertiajs/react'
 import { Button, message } from 'antd'
 import { useEffect } from 'react'
 import OneSignal from 'react-onesignal'
+import { RC } from '~/models/components'
 import useI18n from '~/utility/i18n'
 
-export const Home = () => {
+export const Home: RC = ({ user, locale }) => {
 	const { t } = useI18n()
 	const [messageApi, contextHolder] = message.useMessage()
 
 	const promptOneSignal = async () => {
-		await OneSignal.Notifications.requestPermission()
+		OneSignal.Notifications.requestPermission().then(async accepted => {
+			if (accepted) {
+				await OneSignal.login(String(user.id))
+				OneSignal.User.setLanguage(locale)
+			}
+		})
 	}
 
 	useEffect(() => {
