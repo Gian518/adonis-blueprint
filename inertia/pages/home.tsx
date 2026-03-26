@@ -1,11 +1,16 @@
 import { Head } from '@inertiajs/react'
-import { message } from 'antd'
+import { Button, message } from 'antd'
 import { useEffect } from 'react'
+import OneSignal from 'react-onesignal'
 import useI18n from '~/utility/i18n'
 
 export const Home = () => {
 	const { t } = useI18n()
 	const [messageApi, contextHolder] = message.useMessage()
+
+	const promptOneSignal = async () => {
+		await OneSignal.Notifications.requestPermission()
+	}
 
 	useEffect(() => {
 		const loggedIn = sessionStorage.getItem('loggedIn') == 'true'
@@ -30,6 +35,8 @@ export const Home = () => {
 		<>
 			{contextHolder}
 			<Head title='Homepage' />
+
+			<Button onClick={() => promptOneSignal()} type='primary'>Prompt OneSignal</Button>
 		</>
 	)
 }
