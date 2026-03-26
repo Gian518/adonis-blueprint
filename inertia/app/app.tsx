@@ -9,7 +9,14 @@ import { Content } from 'antd/es/layout/layout'
 import { createRoot } from 'react-dom/client'
 import ThemeWrapper from '~/components/theme-wrapper'
 
-const appName = import.meta.env.VITE_APP_NAME || 'HomeBase'
+const appName = import.meta.env.VITE_APP_NAME
+const oneSignalAppID = import.meta.env.VITE_ONESIGNAL_APP_ID
+
+declare global {
+	interface Window {
+		__oneSignalInitialized?: boolean
+	}
+}
 
 createInertiaApp({
 	progress: { color: '#5468FF' },
@@ -25,7 +32,7 @@ createInertiaApp({
 
 	setup({ el, App, props }) {
 		createRoot(el).render(
-			<ThemeWrapper>
+			<ThemeWrapper oneSignalAppID={oneSignalAppID}>
 				<Layout>
 					<Content>
 						<App {...props} />

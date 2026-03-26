@@ -1,8 +1,11 @@
 import { ConfigProvider } from 'antd'
 import { useEffect, useState } from 'react'
 import { THEME_COLORS } from '~/utility/constants'
+import { setupOneSignal } from '~/utility/onesignal'
 
-const ThemeWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const ThemeWrapper: React.FC<{ children: React.ReactNode; oneSignalAppID: string }> = (
+	{ children, oneSignalAppID },
+) => {
 	const [isDarkMode, setIsDarkMode] = useState(false)
 
 	useEffect(() => {
@@ -11,6 +14,8 @@ const ThemeWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => 
 
 		const handler = (e: MediaQueryListEvent) => setIsDarkMode(e.matches)
 		mediaQuery.addEventListener('change', handler)
+
+		setupOneSignal(oneSignalAppID)
 
 		return () => mediaQuery.removeEventListener('change', handler)
 	}, [])

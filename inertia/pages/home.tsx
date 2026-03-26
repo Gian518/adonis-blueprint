@@ -1,15 +1,17 @@
 import { Head } from '@inertiajs/react'
 import { Button } from 'antd'
-import useI18n from '~/utility/i18n'
+import OneSignal from 'react-onesignal'
 
 export default function Home() {
-	const { t } = useI18n()
+	const promptOneSignal = async () => {
+		await OneSignal.Notifications.requestPermission()
+	}
 
 	return (
 		<>
 			<Head title='Homepage' />
-			<h1>{t('messages.greetings')}</h1>
-			<Button type='primary'>{t('messages.greetings')}</Button>
+
+			<Button onClick={() => promptOneSignal()} type='primary'>Prompt OneSignal</Button>
 		</>
 	)
 }
