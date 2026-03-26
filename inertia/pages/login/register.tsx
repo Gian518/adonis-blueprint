@@ -31,7 +31,8 @@ const Register = () => {
 			clearErrors()
 			const response = await register(data)
 			if (response?.success) {
-				router.visit('/', { data: { register: true } })
+				sessionStorage.setItem('register', 'true')
+				router.visit('/')
 			} else {
 				response.errors?.forEach(error => {
 					setError(error.field, error.message)

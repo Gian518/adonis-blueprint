@@ -10,7 +10,7 @@ export default defineConfig({
 | of AdonisJS. You can opt into them today to avoid any breaking changes
 | during upgrade.
 |
-	*/
+  */
 	experimental: {
 		mergeMultipartFieldsAndFiles: true,
 		shutdownInReverseOrder: true,
@@ -24,7 +24,7 @@ export default defineConfig({
 | List of ace commands to register from packages. The application commands
 | will be scanned automatically from the "./commands" directory.
 |
-	*/
+  */
 	commands: [() => import('@adonisjs/core/commands'), () => import('@adonisjs/lucid/commands')],
 
 	/*
@@ -35,7 +35,7 @@ export default defineConfig({
 | List of service providers to import and register when booting the
 | application
 |
-	*/
+  */
 	providers: [
 		() => import('@adonisjs/core/providers/app_provider'),
 		() => import('@adonisjs/core/providers/hash_provider'),
@@ -63,7 +63,7 @@ export default defineConfig({
 |
 | List of modules to import before starting the application.
 |
-	*/
+  */
 	preloads: [() => import('#start/routes'), () => import('#start/kernel')],
 
 	/*
@@ -74,7 +74,7 @@ export default defineConfig({
 | List of test suites to organize tests by their type. Feel free to remove
 | and add additional suites.
 |
-	*/
+  */
 	tests: {
 		suites: [
 			{
@@ -99,7 +99,7 @@ export default defineConfig({
 | A collection of files you want to copy to the build folder when creating
 | the production build.
 |
-	*/
+  */
 	metaFiles: [
 		{
 			pattern: 'resources/views/**/*.edge',

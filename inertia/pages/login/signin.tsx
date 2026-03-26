@@ -31,7 +31,8 @@ const Signin = () => {
 		try {
 			const response = await login(data)
 			if (response?.success) {
-				router.visit('/', { data: { login: true } })
+				sessionStorage.setItem('loggedIn', 'true')
+				router.visit('/')
 			} else {
 				messageApi.open({
 					type: 'error',
