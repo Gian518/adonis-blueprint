@@ -9,7 +9,7 @@ import { Content } from 'antd/es/layout/layout'
 import { createRoot } from 'react-dom/client'
 import ThemeWrapper from '~/components/theme-wrapper'
 
-const appName = import.meta.env.VITE_APP_NAME
+const appName = import.meta.env.VITE_APP_NAME || 'Adonis App'
 const oneSignalAppID = import.meta.env.VITE_ONESIGNAL_APP_ID
 
 declare global {

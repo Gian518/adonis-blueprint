@@ -1,230 +1,146 @@
-# Home Base
+# AdonisJS Blueprint with OneSignal Integration
 
-A smart grocery management application that helps you keep track of products in your fridge and pantry with barcode scanning and expiration date reminders.
+Boilerplate project for full-stack applications based on **AdonisJS** with a React/Inertia front-end, designed to serve as the base branch in a monorepo. Includes structure, configurations, and standard workflows for development, testing, and deployment.
+**This branch includes the integration with OneSignal, which allows the webapp to send notifications**
 
 ⚠️ Warning: this README is a draft completely written by an LLM. It doesn't reflect the final project and could absolutely contain errors. It will be edited in the future. ⚠️
 
-## Overview
+## Description
 
-**Home Base** is a full-stack web application designed to streamline household inventory management. With barcode scanning capabilities, users can quickly add products to their virtual fridge or pantry, and receive timely reminders when items are approaching their expiration dates. Never waste food again by staying on top of what you have and when it expires.
+This repository is intended as a generic starting point for AdonisJS projects. It is ideal for product lines that share a common core and want to reduce initial setup with a ready-to-use template.
 
-### Key Features
+### Goals
 
-- 📱 **Barcode Scanning**: Quickly add products by scanning their barcodes
-- 🧊 **Fridge & Pantry Management**: Organize products across different storage locations
-- 🔔 **Expiration Reminders**: Get notified before items expire
-- 🌍 **Multi-language Support**: English and Italian localization included
-- 🔐 **User Authentication**: Secure login and registration system
-- 📱 **Responsive Design**: Works seamlessly on desktop and mobile devices
-- 💾 **Persistent Storage**: Cloud-based database for your inventory
+- Base for AdonisJS projects (server + API)
+- React front-end integration with Inertia.js
+- Dev/test/CI workflow already configured
+- Monorepo-friendly convention with a shared "base" branch
 
 ## Tech Stack
 
-### Backend
+- Node.js + TypeScript
+- AdonisJS (version 6 or later)
+- React + Inertia.js
+- Vite for frontend
+- SQL Database (SQLite/PostgreSQL/MySQL)
+- Lucid ORM
+- Authentication via Adonis auth
+- ESLint + dprint for quality and formatting
 
-- **Runtime**: Node.js with TypeScript
-- **Framework**: AdonisJS 6 (Full-stack framework)
-- **Database**: SQL (with migrations support)
-- **Authentication**: AdonisJS built-in auth system
-- **Middleware**: Custom middleware for auth, localization, and bindings
-- **Validation**: Built-in validators for user input
+## File Structure
 
-### Frontend
+- `app/`: backend logic (controllers, models, middleware, validators)
+- `config/`: Adonis configurations (app, auth, db, etc.)
+- `start/`: framework bootstrap (routes, kernel, env)
+- `database/migrations/`: schema migrations
+- `resources/lang/`: localizations
+- `resources/views/`: Edge templates
+- `inertia/`: React + Inertia front-end
+- `tests/`: test suite
+- `bin/`: utility scripts (server, console, test)
+- `adonisrc.ts`, `package.json`, `tsconfig.json`: project setup
 
-- **Framework**: React 18 with TypeScript
-- **SSR/Templating**: Inertia.js for server-side rendering
-- **Styling**: CSS with utility functions for theming
-- **Build Tool**: Vite for fast development and optimized builds
-- **Components**: Reusable React components (Glass Card, Theme Wrapper, etc.)
+## Initial Setup
 
-### DevTools
-
-- **Linting**: ESLint with TypeScript support
-- **Formatting**: dprint for code formatting
-- **Package Manager**: npm/yarn
-- **Development Server**: Hot module reloading with Vite
-
-## Project Structure
-
-```shell
-home-base/
-├── app/                          # Application logic (backend)
-│   ├── controllers/              # Request handlers
-│   ├── models/                   # Database models (User, etc.)
-│   ├── middleware/               # Custom middleware (auth, localization, etc.)
-│   ├── exceptions/               # Global exception handling
-│   └── validators/               # Input validation schemas
-├── inertia/                      # Frontend (React + Inertia.js)
-│   ├── api/                      # Frontend API integration
-│   ├── pages/                    # Page components
-│   ├── components/               # Reusable UI components
-│   ├── styles/                   # CSS files and styling utilities
-│   ├── utility/                  # Helper functions and constants
-│   └── app.tsx                   # Root React app component
-├── config/                       # Application configuration
-│   ├── app.ts                    # Core app configuration
-│   ├── auth.ts                   # Authentication setup
-│   ├── database.ts               # Database configuration
-│   ├── session.ts                # Session management
-│   ├── i18n.ts                   # Internationalization settings
-│   └── ...                       # Other service configurations
-├── database/
-│   └── migrations/               # Database schema migrations
-├── resources/
-│   ├── lang/                     # Translation files (en, it)
-│   └── views/                    # Edge template files
-├── start/                        # Application bootstrap files
-│   ├── kernel.ts                 # Middleware registration
-│   ├── routes.ts                 # Route definitions
-│   └── env.ts                    # Environment setup
-├── bin/                          # Executable scripts
-│   ├── server.ts                 # Development server entry point
-│   ├── console.ts                # REPL and CLI commands
-│   └── test.ts                   # Test runner configuration
-├── tests/                        # Test files
-├── vite.config.ts                # Vite configuration
-├── adonisrc.ts                   # AdonisJS configuration
-├── eslint.config.ts              # ESLint rules
-├── tsconfig.json                 # TypeScript configuration
-└── package.json                  # Dependencies and scripts
-
-```
-
-## Getting Started
-
-### Prerequisites
-
-- **Node.js**: v18 or higher
-- **npm** or **yarn**: Package manager
-- **Git**: For cloning the repository
-
-### Installation
-
-1. **Clone the repository**
-
-   ```bash
-   git clone https://github.com/yourusername/home-base.git
-   cd home-base
-   ```
-
-2. **Install dependencies**
-
-   ```bash
-   npm install
-   ```
-
-3. **Set up environment variables**
-
-   ```bash
-   cp .env.example .env
-   ```
-
-   Edit `.env` with your configuration (database, API keys, etc.)
-
-4. **Generate application key**
-
-   ```bash
-   node ace generate:key
-   ```
-
-5. **Run database migrations**
-
-   ```bash
-   node ace migration:run
-   ```
-
-## Running the Application
-
-### Development
-
-Start the development server with hot reloading:
+1. Clone:
 
 ```bash
-npm run dev
+git clone https://github.com/Gian518/adonis-blueprint Adonis Blueprint
+cd project-name
 ```
 
-The application will be available at `http://localhost:3333`
-
-### Production Build
-
-Build optimized assets:
+2. Install dependencies:
 
 ```bash
-npm run build
+npm ci
 ```
 
-Start the production server:
+3. Create `.env` from `.env.example`:
 
 ```bash
-npm run start
+cp .env.example .env
 ```
 
-### Available Scripts
+4. Generate app key:
 
-- `npm run dev` - Start development server with hot reload
-- `npm run build` - Build production assets
-- `npm start` - Start production server
-- `npm run test` - Run test suite
-- `npm run lint` - Run ESLint
-- `npm run format` - Format code with dprint
+```bash
+node ace generate:key
+```
 
-## Architecture Overview
+5. Run migrations:
 
-### Authentication Flow
+```bash
+node ace migration:run
+```
 
-- Users register/login via the authentication middleware
-- Sessions are managed through AdonisJS session system
-- Authenticated users can access protected routes
+6. (Optional) Seed initial 
 
-### User Localization
+```bash
+node ace db:seed
+```
 
-The `detect_user_locale_middleware` automatically detects and set user's language preference, supporting English and Italian out of the box.
+## Useful Commands
 
-### Frontend Architecture
+- `npm run dev`: starts Adonis + React/Inertia server in dev mode
+- `npm run build`: compiles assets for production
+- `npm run start`: starts server in production mode
+- `npm run lint`: runs ESLint
+- `npm run format`: runs dprint
+- `npm run test`: runs test suite
+- `node ace migration:run`: run DB migrations
+- `node ace migration:rollback`: rollback migrations
+- `node ace make:controller <Name>`: generate controller
+- `node ace make:model <Name> -m`: generate model + migration
 
-- **Inertia.js** bridges the backend and frontend, allowing server-side routing with client-side reactivity
-- **React components** handle UI rendering and user interactions
-- **API integration** communicates with backend endpoints for data management
+## Main Configurations
 
-### Database Schema
+- `config/app.ts`: base application options
+- `config/database.ts`: DB connection (driver, pool, migrations)
+- `config/auth.ts`: providers and guards
+- `config/session.ts`: session store
+- `config/i18n.ts`: languages and fallback
+- `adonisrc.ts`: bootstrap path and providers
+- `vite.config.ts`: React/Inertia build
 
-- User management with secure password hashing
-- Product inventory system (structure to be extended)
-- Session and authentication tables
+## Recommended Development Flow
 
-## Configuration Files
+1. Create branch from `main` or `base`:
+   - `git checkout -b feature/<description>`
+2. Implement feature + tests
+3. Run:
+   - `npm run lint`
+   - `npm run test`
+4. Commit and push
+5. Open PR with description and checklist
 
-- **adonisrc.ts**: AdonisJS framework configuration
-- **vite.config.ts**: Frontend build and dev server configuration
-- **tsconfig.json**: TypeScript compiler settings
-- **eslint.config.ts**: Code quality and style rules
-- **dprint.json**: Code formatting rules
-- **config/**: Service configurations (auth, database, i18n, etc.)
+## Internationalization
 
-## Internationalization (i18n)
+- `resources/lang/en/`, `resources/lang/it/`
+- Add modular translations in new YAML/JSON files
+- Use `t()` helper in backend and i18n hooks in frontend
 
-Translation files are located in `resources/lang/`. The application supports:
+## Authentication and Middleware
 
-- **English** (en)
-- **Italian** (it)
+- `app/Middleware/auth_middleware.ts`: route protection
+- `app/Middleware/guest_middleware.ts`: anonymous routes
+- `app/Middleware/detect_user_locale_middleware.ts`: user locale detection
 
-Add new translations by updating files in the respective language directories.
+## Route Examples in `start/routes.ts`
 
-## Contributing
+- `/` or `/dashboard` (authenticated)
+- `/login`, `/register`, `/logout`
+- `/api/*` for REST interfaces
 
-1. Create a feature branch (`git checkout -b feature/your-feature`)
-2. Commit your changes (`git commit -m 'Add your feature'`)
-3. Push to the branch (`git push origin feature/your-feature`)
-4. Open a Pull Request
+## Monorepo Notes
+
+- This project is the shared "core"
+- Other packages may exist in the same repository (e.g. `packages/*`)
+- Keep Adonis version compatibility and common scripts in sync
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Support
-
-For issues, questions, or suggestions, please open an issue on GitHub or contact the development team.
+MIT
 
 ---
 
-### Happy organizing! 🧊📦
+⚡ This README is intended as a base document to get started immediately with a new AdonisJS project in a monorepo.
