@@ -34,7 +34,7 @@ const OneSignalAlert: React.FC<IOneSignalAlertProps> = ({ nonDismissable, alertT
 
 	return (
 		status !== undefined && status !== 'granted'
-		&& (localStorage.getItem('notification-alert-dismissed') !== 'true' || !nonDismissable)
+		&& (localStorage.getItem('notification-alert-dismissed') !== 'true' || nonDismissable)
 		&& (
 			<Alert
 				title={t('notifications.disabled')}
