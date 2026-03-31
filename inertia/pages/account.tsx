@@ -272,11 +272,14 @@ export const Account = ({ user }: IProps) => {
 			</Row>
 
 			{/* Notification alert */}
-			<Row>
-				<Col {...gs.col}>
-					<OneSignalAlert nonDismissable alertType='info' style={as.notificationAlert} />
-				</Col>
-			</Row>
+			{!isEditing
+				&& (
+					<Row>
+						<Col {...gs.col}>
+							<OneSignalAlert nonDismissable alertType='info' style={as.notificationAlert} />
+						</Col>
+					</Row>
+				)}
 
 			{/* Logout button */}
 			<Row>
