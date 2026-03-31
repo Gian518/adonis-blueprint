@@ -34,7 +34,7 @@ createInertiaApp({
 		createRoot(el).render(
 			<ThemeWrapper oneSignalAppID={oneSignalAppID}>
 				<Layout>
-					<Content>
+					<Content className='app-container'>
 						<App {...props} />
 					</Content>
 				</Layout>

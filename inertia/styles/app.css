@@ -56,6 +56,15 @@ body {
   }
 }
 
+/* App container in plain CSS because we can't use hooks in app.tsx */
+.app-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px 16px;
+}
+
 /* Ant Design overrides (that cannot be set in theme constants) */
 .ant-segmented-thumb{
   height: 48px !important;
