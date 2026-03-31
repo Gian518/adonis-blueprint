@@ -17,12 +17,7 @@ const Signin = () => {
 	const { fakeHandleRandomizer } = hooks()
 
 	/* STYLES */
-	const {
-		icon,
-		input,
-		forgotPassword,
-		loginButton,
-	} = styles.login()
+	const ls = styles.login()
 
 	/**
 	 * Handles the login process by sending the username and password
@@ -56,8 +51,8 @@ const Signin = () => {
 			<Input
 				placeholder={fakeHandleRandomizer()}
 				variant='filled'
-				style={input}
-				prefix={<UserOutlined style={icon} height={'17px'} />}
+				style={ls.input}
+				prefix={<UserOutlined style={ls.icon} height={'17px'} />}
 				onChange={e => setData('username', e.target.value)}
 			/>
 
@@ -68,14 +63,14 @@ const Signin = () => {
 			<Input.Password
 				placeholder='••••••••'
 				variant='filled'
-				style={input}
-				prefix={<LockOutlined style={icon} height={'17px'} />}
+				style={ls.input}
+				prefix={<LockOutlined style={ls.icon} height={'17px'} />}
 				onChange={e => setData('password', e.target.value)}
 				onPressEnter={handleLogin}
 			/>
 
 			{/* Forgot password */}
-			<Button type='link' style={forgotPassword}>
+			<Button type='link' style={ls.forgotPassword}>
 				{t('account.login.forgotpassword')}
 			</Button>
 
@@ -83,7 +78,7 @@ const Signin = () => {
 			<Button
 				type='primary'
 				size='large'
-				style={loginButton}
+				style={ls.loginButton}
 				onClick={handleLogin}
 				disabled={!data.username || !data.password}
 			>

@@ -20,11 +20,7 @@ const Register = () => {
 	})
 
 	/* STYLES */
-	const {
-		icon,
-		input,
-		loginButton,
-	} = styles.login()
+	const ls = styles.login()
 
 	const handleRegister = async () => {
 		try {
@@ -64,8 +60,8 @@ const Register = () => {
 			<Input
 				placeholder={t('account.register.fullnameplaceholder')}
 				variant='filled'
-				style={input}
-				prefix={<MehOutlined style={icon} height={'17px'} />}
+				style={ls.input}
+				prefix={<MehOutlined style={ls.icon} height={'17px'} />}
 				onChange={e => changeField('fullName', e.target.value)}
 				{...(errors.fullName && { status: 'error' })}
 			/>
@@ -77,8 +73,8 @@ const Register = () => {
 			<Input
 				placeholder={fakeHandleRandomizer()}
 				variant='filled'
-				style={input}
-				prefix={<UserOutlined style={icon} height={'17px'} />}
+				style={ls.input}
+				prefix={<UserOutlined style={ls.icon} height={'17px'} />}
 				onChange={e => changeField('username', e.target.value)}
 				{...(errors.username && { status: 'error' })}
 			/>
@@ -92,8 +88,8 @@ const Register = () => {
 			<Input
 				placeholder={t('account.register.emailplaceholder')}
 				variant='filled'
-				style={input}
-				prefix={<MailOutlined style={icon} height={'17px'} />}
+				style={ls.input}
+				prefix={<MailOutlined style={ls.icon} height={'17px'} />}
 				onChange={e => changeField('email', e.target.value)}
 				{...(errors.email && { status: 'error' })}
 			/>
@@ -107,8 +103,8 @@ const Register = () => {
 			<Input.Password
 				placeholder='••••••••'
 				variant='filled'
-				style={input}
-				prefix={<LockOutlined style={icon} height={'17px'} />}
+				style={ls.input}
+				prefix={<LockOutlined style={ls.icon} height={'17px'} />}
 				onChange={e => changeField('password', e.target.value)}
 				{...(errors.password && { status: 'error' })}
 			/>
@@ -122,8 +118,8 @@ const Register = () => {
 			<Input.Password
 				placeholder='••••••••'
 				variant='filled'
-				style={input}
-				prefix={<LockOutlined style={icon} height={'17px'} />}
+				style={ls.input}
+				prefix={<LockOutlined style={ls.icon} height={'17px'} />}
 				onChange={e => changeField('confirmPassword', e.target.value)}
 				{...(errors.confirmPassword && { status: 'error' })}
 			/>
@@ -134,7 +130,7 @@ const Register = () => {
 			<Button
 				type='primary'
 				size='large'
-				style={loginButton}
+				style={ls.loginButton}
 				onClick={handleRegister}
 				disabled={!data.username || !data.email || !data.password || !data.confirmPassword || processing}
 			>
