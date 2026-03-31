@@ -14,36 +14,28 @@ const Login = () => {
 	/* HOOKS */
 	const { t } = useI18n()
 	const cs = styles.common()
-	const {
-		glassContainer,
-		heading,
-		subheading,
-		form,
-		tabsContainer,
-		tabsButton,
-		tabsText,
-	} = styles.login()
+	const ls = styles.login()
 
 	return (
 		<>
 			<Row style={cs.container}>
 				<Col md={{ span: 12, offset: 6 }}>
-					<GlassCard innerStyle={glassContainer}>
+					<GlassCard innerStyle={ls.glassContainer}>
 						{/* Logo */}
 						<img src={logo} alt='Logo' width={96} />
 						{/* Title */}
-						<h1 style={heading}>{t('generic.appname')}</h1>
+						<h1 style={ls.heading}>{t('generic.appname')}</h1>
 						{/* Subtitle */}
-						<p style={subheading}>{t('account.login.motto')}</p>
+						<p style={ls.subheading}>{t('account.login.motto')}</p>
 
-						<div style={form}>
+						<div style={ls.form}>
 							{/* Login/Registration tabs */}
 							<Segmented
 								options={[
 									{ label: t('account.login.login'), value: 'login' },
 									{ label: t('account.register.signup'), value: 'register' },
 								]}
-								styles={{ root: tabsContainer, item: tabsButton, label: tabsText }}
+								styles={{ root: ls.tabsContainer, item: ls.tabsButton, label: ls.tabsText }}
 								value={activeTab}
 								onChange={(value) => setActiveTab(value as 'login' | 'register')}
 							/>
