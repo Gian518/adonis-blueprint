@@ -1,6 +1,10 @@
+import { theme } from 'antd'
 import { css } from '~/utility/css'
 
 const common = () => {
+	const { useToken } = theme
+	const { token } = useToken()
+
 	return {
 		container: css({
 			width: '100%',
@@ -34,6 +38,16 @@ const common = () => {
 		}),
 		mb32: css({
 			marginBottom: 32,
+		}),
+
+		// Avatar
+		defaultAvatar: css({
+			backgroundColor: token.colorBgBase,
+			border: `2px solid ${token.colorPrimary}`,
+		}),
+		defaultIcon: css({
+			color: token.colorPrimary,
+			backgroundColor: token.colorBgBase,
 		}),
 	}
 }
