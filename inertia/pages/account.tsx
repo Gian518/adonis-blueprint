@@ -28,9 +28,6 @@ export const Account = ({ user }: IProps) => {
 
 	/* HOOKS */
 	const { t } = useI18n()
-	const as = styles.account()
-	const bs = styles.button()
-	const cs = styles.common()
 	const [messageApi, contextHolder] = message.useMessage()
 	const {
 		data: personalData,
@@ -54,6 +51,12 @@ export const Account = ({ user }: IProps) => {
 		newPassword: '',
 		confirmPassword: '',
 	})
+
+	/* STYLES */
+	const as = styles.account()
+	const bs = styles.button()
+	const cs = styles.common()
+	const gs = styles.grid()
 
 	/* BOOT */
 	useEffect(() => {
@@ -155,8 +158,8 @@ export const Account = ({ user }: IProps) => {
 			{contextHolder}
 			<Head title={t('account.profile.pagename')} />
 
-			<Row style={cs.container}>
-				<Col md={{ span: 12, offset: 6 }}>
+			<Row>
+				<Col {...gs.col}>
 					{/* Header */}
 					<Flex justify='space-between' align='center'>
 						<button onClick={() => window.history.back()}>
@@ -265,11 +268,19 @@ export const Account = ({ user }: IProps) => {
 								</>
 							)}
 					</GlassCard>
+				</Col>
+			</Row>
 
-					{/* Notification alert */}
+			{/* Notification alert */}
+			<Row>
+				<Col {...gs.col}>
 					<OneSignalAlert nonDismissable alertType='info' style={as.notificationAlert} />
+				</Col>
+			</Row>
 
-					{/* Logout button */}
+			{/* Logout button */}
+			<Row>
+				<Col {...gs.col}>
 					{!isEditing
 						&& (
 							<Button

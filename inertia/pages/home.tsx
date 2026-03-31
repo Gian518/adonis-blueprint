@@ -11,8 +11,11 @@ import useI18n from '~/utility/i18n'
 export const Home: RC = ({ user }) => {
 	const { t } = useI18n()
 	const [messageApi, contextHolder] = message.useMessage()
+
+	/* STYLES */
 	const cs = styles.common()
 	const hs = styles.home()
+	const gs = styles.grid()
 
 	useEffect(() => {
 		const loggedIn = sessionStorage.getItem('loggedIn') == 'true'
@@ -49,8 +52,8 @@ export const Home: RC = ({ user }) => {
 			{contextHolder}
 			<Head title='Homepage' />
 
-			<Row style={cs.container}>
-				<Col md={{ span: 12, offset: 6 }}>
+			<Row>
+				<Col {...gs.col}>
 					<Flex justify='space-between' align='center'>
 						{/* Welcome text */}
 						<div>

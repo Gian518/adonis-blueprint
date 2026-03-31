@@ -19,6 +19,7 @@ const OneSignalAlert: React.FC<IOneSignalAlertProps> = ({ nonDismissable, alertT
 	const { t } = useI18n()
 	const { user, locale } = (usePage() as { props: { user: User; locale: string } }).props
 
+	/* STYLES */
 	const oa = styles.onesignalalert()
 
 	const promptOneSignal = async () => {

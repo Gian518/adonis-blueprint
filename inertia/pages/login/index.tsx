@@ -13,13 +13,15 @@ const Login = () => {
 
 	/* HOOKS */
 	const { t } = useI18n()
-	const cs = styles.common()
+
+	/* STYLES */
 	const ls = styles.login()
+	const gs = styles.grid()
 
 	return (
 		<>
-			<Row style={cs.container}>
-				<Col md={{ span: 12, offset: 6 }}>
+			<Row>
+				<Col {...gs.col}>
 					<GlassCard innerStyle={ls.glassContainer}>
 						{/* Logo */}
 						<img src={logo} alt='Logo' width={96} />

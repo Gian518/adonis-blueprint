@@ -11,6 +11,7 @@ interface IGlassCard {
 }
 
 const GlassCard: React.FC<IGlassCard> = ({ title, children, containerStyle, innerStyle }) => {
+	/* STYLES */
 	const gs = styles.glassCard()
 
 	return (

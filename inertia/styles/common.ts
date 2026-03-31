@@ -6,13 +6,6 @@ const common = () => {
 	const { token } = useToken()
 
 	return {
-		container: css({
-			width: '100%',
-			display: 'flex',
-			flexDirection: 'column',
-			justifyContent: 'center',
-			padding: '24px 16px',
-		}),
 		standardFlex: css({
 			display: 'flex',
 			flexDirection: 'column',
