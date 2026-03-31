@@ -13,7 +13,7 @@ const Login = () => {
 
 	/* HOOKS */
 	const { t } = useI18n()
-	const { container } = styles.common()
+	const cs = styles.common()
 	const {
 		glassContainer,
 		heading,
@@ -26,7 +26,7 @@ const Login = () => {
 
 	return (
 		<>
-			<Row style={container}>
+			<Row style={cs.container}>
 				<Col md={{ span: 12, offset: 6 }}>
 					<GlassCard innerStyle={glassContainer}>
 						{/* Logo */}

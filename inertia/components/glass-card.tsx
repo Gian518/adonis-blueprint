@@ -11,12 +11,12 @@ interface IGlassCard {
 }
 
 const GlassCard: React.FC<IGlassCard> = ({ title, children, containerStyle, innerStyle }) => {
-	const { innerContainer, heading } = styles.glassCard()
+	const gs = styles.glassCard()
 
 	return (
 		<div style={containerStyle}>
-			{title && <Typography.Title style={heading}>{title}</Typography.Title>}
-			<div style={cx(innerContainer, innerStyle)}>
+			{title && <Typography.Title style={gs.heading}>{title}</Typography.Title>}
+			<div style={cx(gs.innerContainer, innerStyle)}>
 				{children}
 			</div>
 		</div>

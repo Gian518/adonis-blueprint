@@ -6,7 +6,12 @@ const account = () => {
 	const { token } = useToken()
 
 	return {
+		backButton: css({
+			fontSize: 18,
+		}),
 		pageTitle: css({
+			marginLeft: 5,
+			marginBottom: 0,
 			fontSize: 20,
 			fontWeight: 'bold',
 		}),
@@ -71,6 +76,9 @@ const account = () => {
 		exitButton: css({
 			padding: 12,
 			fontSize: 16,
+		}),
+		notificationAlert: css({
+			marginTop: 16,
 		}),
 	}
 }

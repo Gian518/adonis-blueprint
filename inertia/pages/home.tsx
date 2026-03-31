@@ -11,7 +11,7 @@ import useI18n from '~/utility/i18n'
 export const Home: RC = ({ user }) => {
 	const { t } = useI18n()
 	const [messageApi, contextHolder] = message.useMessage()
-	const sc = styles.common()
+	const cs = styles.common()
 	const hs = styles.home()
 
 	useEffect(() => {
@@ -49,7 +49,7 @@ export const Home: RC = ({ user }) => {
 			{contextHolder}
 			<Head title='Homepage' />
 
-			<Row style={sc.container}>
+			<Row style={cs.container}>
 				<Col md={{ span: 12, offset: 6 }}>
 					<Flex justify='space-between' align='center'>
 						{/* Welcome text */}
@@ -64,7 +64,7 @@ export const Home: RC = ({ user }) => {
 							<Avatar
 								size={40}
 								icon={<UserOutlined style={hs.icon} />}
-								style={sc.defaultAvatar}
+								style={cs.defaultAvatar}
 							/>
 						</Link>
 					</Flex>

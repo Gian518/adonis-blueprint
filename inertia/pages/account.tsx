@@ -1,11 +1,19 @@
 import User from '#models/user'
-import { IdcardOutlined, LockOutlined, LogoutOutlined, MailOutlined, UserOutlined } from '@ant-design/icons'
+import {
+	IdcardOutlined,
+	LeftOutlined,
+	LockOutlined,
+	LogoutOutlined,
+	MailOutlined,
+	UserOutlined,
+} from '@ant-design/icons'
 import { Head, router, useForm } from '@inertiajs/react'
 import { Avatar, Button, Col, Flex, Input, message, Row, Typography } from 'antd'
 import { useEffect, useState } from 'react'
 import OneSignal from 'react-onesignal'
 import { changePassword, changePersonalData, logout } from '~/api'
 import GlassCard from '~/components/glass-card'
+import OneSignalAlert from '~/components/onesignal-alert'
 import styles from '~/styles'
 import { css, cx } from '~/utility/css'
 import useI18n from '~/utility/i18n'
@@ -20,10 +28,9 @@ export const Account = ({ user }: IProps) => {
 
 	/* HOOKS */
 	const { t } = useI18n()
-	const { container, standardFlex, mt16, mt32, w100, h100 } = styles.common()
-	const { pageTitle, editButton, avatar, icon, fullName, username, sectionTitle, input, inputIcon, exitButton } = styles
-		.account()
-	const { ghosted, danger } = styles.button()
+	const as = styles.account()
+	const bs = styles.button()
+	const cs = styles.common()
 	const [messageApi, contextHolder] = message.useMessage()
 	const {
 		data: personalData,
@@ -125,6 +132,9 @@ export const Account = ({ user }: IProps) => {
 		}
 	}
 
+	/**
+	 * [API] Logout
+	 */
 	const handleLogout = async () => {
 		try {
 			const response = await logout()
@@ -145,14 +155,19 @@ export const Account = ({ user }: IProps) => {
 			{contextHolder}
 			<Head title={t('account.profile.pagename')} />
 
-			<Row style={container}>
+			<Row style={cs.container}>
 				<Col md={{ span: 12, offset: 6 }}>
 					{/* Header */}
 					<Flex justify='space-between' align='center'>
-						<Typography.Title style={pageTitle}>{t('account.profile.pagename')}</Typography.Title>
+						<button onClick={() => window.history.back()}>
+							<Flex justify='center' align='center'>
+								<LeftOutlined style={as.backButton} />
+								<Typography.Title style={as.pageTitle}>{t('account.profile.pagename')}</Typography.Title>
+							</Flex>
+						</button>
 						<Button
 							type='text'
-							style={editButton({ ...(isEditing && { editing: 'true' }) })}
+							style={as.editButton({ ...(isEditing && { editing: 'true' }) })}
 							onClick={() => {
 								if (isEditing) {
 									setDefault()
@@ -167,29 +182,31 @@ export const Account = ({ user }: IProps) => {
 					{/* Avatar */}
 					<Flex justify='center' align='center' vertical>
 						{/* Propic */}
-						<Avatar size={102} icon={<UserOutlined style={icon} />} style={avatar} />
+						<Avatar size={102} icon={<UserOutlined style={as.icon} />} style={as.avatar} />
 						{/* Name */}
-						<Typography.Title level={2} style={fullName}>{user.fullName}</Typography.Title>
+						<Typography.Title level={2} style={as.fullName}>{user.fullName}</Typography.Title>
 						{/* Username */}
-						<Typography.Text style={username}>@{user.username}</Typography.Text>
+						<Typography.Text style={as.username}>@{user.username}</Typography.Text>
 					</Flex>
 
 					{/* Personal details */}
 					<GlassCard
 						title={t('account.profile.personaldetails')}
 						containerStyle={css({ marginTop: 24 })}
-						innerStyle={standardFlex}
+						innerStyle={cs.standardFlex}
 					>
 						{/* Full name */}
-						<Typography.Text style={sectionTitle}>
+						<Typography.Text style={as.sectionTitle}>
 							{t('account.register.fullname')}
 						</Typography.Text>
 						<Input
 							value={personalData.fullName}
 							variant='filled'
-							prefix={<IdcardOutlined style={inputIcon({ ...(!isEditing && { disabled: 'true' }) })} height={'17px'} />}
+							prefix={
+								<IdcardOutlined style={as.inputIcon({ ...(!isEditing && { disabled: 'true' }) })} height={'17px'} />
+							}
 							disabled={!isEditing}
-							style={cx(input({ ...(!isEditing && { disabled: 'true' }) }))}
+							style={cx(as.input({ ...(!isEditing && { disabled: 'true' }) }))}
 							onChange={e => setPersonalData('fullName', e.target.value)}
 							onPressEnter={handleChangePersonalData}
 							{...(personalErrors.fullName && { status: 'error' })}
@@ -197,15 +214,17 @@ export const Account = ({ user }: IProps) => {
 						{personalErrors.fullName && <Typography.Text type='danger'>{personalErrors.fullName}</Typography.Text>}
 
 						{/* Username */}
-						<Typography.Text style={sectionTitle}>
+						<Typography.Text style={as.sectionTitle}>
 							{t('account.login.username')}
 						</Typography.Text>
 						<Input
 							value={personalData.username}
 							variant='filled'
-							prefix={<UserOutlined style={inputIcon({ ...(!isEditing && { disabled: 'true' }) })} height={'17px'} />}
+							prefix={
+								<UserOutlined style={as.inputIcon({ ...(!isEditing && { disabled: 'true' }) })} height={'17px'} />
+							}
 							disabled={!isEditing}
-							style={cx(input({ ...(!isEditing && { disabled: 'true' }) }))}
+							style={cx(as.input({ ...(!isEditing && { disabled: 'true' }) }))}
 							onChange={e => setPersonalData('username', e.target.value)}
 							onPressEnter={handleChangePersonalData}
 							{...(personalErrors.username && { status: 'error' })}
@@ -213,15 +232,17 @@ export const Account = ({ user }: IProps) => {
 						{personalErrors.username && <Typography.Text type='danger'>{personalErrors.username}</Typography.Text>}
 
 						{/* E-Mail address */}
-						<Typography.Text style={sectionTitle}>
+						<Typography.Text style={as.sectionTitle}>
 							{t('account.register.email')}
 						</Typography.Text>
 						<Input
 							value={personalData.email}
 							variant='filled'
-							prefix={<MailOutlined style={inputIcon({ ...(!isEditing && { disabled: 'true' }) })} height={'17px'} />}
+							prefix={
+								<MailOutlined style={as.inputIcon({ ...(!isEditing && { disabled: 'true' }) })} height={'17px'} />
+							}
 							disabled={!isEditing}
-							style={input({ ...(!isEditing && { disabled: 'true' }) })}
+							style={as.input({ ...(!isEditing && { disabled: 'true' }) })}
 							onChange={e => setPersonalData('email', e.target.value)}
 							onPressEnter={handleChangePersonalData}
 							{...(personalErrors.email && { status: 'error' })}
@@ -235,7 +256,7 @@ export const Account = ({ user }: IProps) => {
 									<Button
 										type='primary'
 										size='large'
-										style={cx(mt16, w100)}
+										style={cx(cs.mt16, cs.w100)}
 										disabled={!personalData.fullName || !personalData.email}
 										onClick={() => handleChangePersonalData()}
 									>
@@ -245,11 +266,15 @@ export const Account = ({ user }: IProps) => {
 							)}
 					</GlassCard>
 
+					{/* Notification alert */}
+					<OneSignalAlert nonDismissable alertType='info' style={as.notificationAlert} />
+
+					{/* Logout button */}
 					{!isEditing
 						&& (
 							<Button
 								color='danger'
-								style={cx(w100, h100, mt16, ghosted, danger, exitButton)}
+								style={cx(cs.w100, cs.h100, cs.mt16, bs.ghosted, bs.danger, as.exitButton)}
 								icon={<LogoutOutlined size={16} />}
 								onClick={() => handleLogout()}
 							>
@@ -261,9 +286,9 @@ export const Account = ({ user }: IProps) => {
 						&& (
 							<>
 								{/* Password change */}
-								<GlassCard title={t('account.login.password')} containerStyle={mt32} innerStyle={standardFlex}>
+								<GlassCard title={t('account.login.password')} containerStyle={cs.mt32} innerStyle={cs.standardFlex}>
 									{/* Current password */}
-									<Typography.Text style={sectionTitle}>
+									<Typography.Text style={as.sectionTitle}>
 										{t('account.profile.currentpassword')}
 									</Typography.Text>
 									<Input.Password
@@ -271,11 +296,11 @@ export const Account = ({ user }: IProps) => {
 										variant='filled'
 										prefix={
 											<LockOutlined
-												style={inputIcon()}
+												style={as.inputIcon()}
 												height={'17px'}
 											/>
 										}
-										style={input()}
+										style={as.input()}
 										value={passwordData.currentPassword}
 										onChange={e => setPasswordData('currentPassword', e.target.value)}
 										{...(passwordErrors.currentPassword && { status: 'error' })}
@@ -285,7 +310,7 @@ export const Account = ({ user }: IProps) => {
 									)}
 
 									{/* New password */}
-									<Typography.Text style={sectionTitle}>
+									<Typography.Text style={as.sectionTitle}>
 										{t('account.profile.newpassword')}
 									</Typography.Text>
 									<Input.Password
@@ -293,11 +318,11 @@ export const Account = ({ user }: IProps) => {
 										variant='filled'
 										prefix={
 											<LockOutlined
-												style={inputIcon()}
+												style={as.inputIcon()}
 												height={'17px'}
 											/>
 										}
-										style={input()}
+										style={as.input()}
 										value={passwordData.newPassword}
 										onChange={e => setPasswordData('newPassword', e.target.value)}
 										{...(passwordErrors.newPassword && { status: 'error' })}
@@ -307,14 +332,14 @@ export const Account = ({ user }: IProps) => {
 									)}
 
 									{/* Confirm password */}
-									<Typography.Text style={sectionTitle}>
+									<Typography.Text style={as.sectionTitle}>
 										{t('account.register.confirmpassword')}
 									</Typography.Text>
 									<Input.Password
 										placeholder='••••••••'
 										variant='filled'
-										prefix={<LockOutlined style={inputIcon()} height={'17px'} />}
-										style={input()}
+										prefix={<LockOutlined style={as.inputIcon()} height={'17px'} />}
+										style={as.input()}
 										value={passwordData.confirmPassword}
 										onChange={e => setPasswordData('confirmPassword', e.target.value)}
 										onPressEnter={handleChangePassword}
@@ -328,7 +353,7 @@ export const Account = ({ user }: IProps) => {
 									<Button
 										type='primary'
 										size='large'
-										style={cx(mt16, w100)}
+										style={cx(cs.mt16, cs.w100)}
 										disabled={!passwordData.currentPassword || !passwordData.newPassword
 											|| !passwordData.confirmPassword}
 										onClick={() => handleChangePassword()}
