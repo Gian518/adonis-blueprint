@@ -65,6 +65,10 @@ export const THEME_COLORS: {
 			colorBorder: '#333333',
 			colorBgContainer: '#1A1A1A',
 			colorErrorText: '#da6262',
+			colorWarningBg: '#2B2111CC',
+			colorInfoBg: '#112B2B99',
+			colorErrorBg: '#2B1111CC',
+			colorSuccessBg: '#112B21CC',
 		},
 		components: {
 			Button: {

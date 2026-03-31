@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import OneSignal from 'react-onesignal'
 
 /**
@@ -20,5 +21,31 @@ export const setupOneSignal = async (oneSignalAppID: string) => {
 
 			window.__oneSignalInitialized = true
 		}
+	}
+}
+
+export const useOneSignal = () => {
+	const [permission, setPermission] = useState<NotificationPermission | undefined>(undefined)
+
+	const checkPermission = () => {
+		const currentPermission = OneSignal.Notifications.permissionNative
+		setPermission(currentPermission)
+	}
+
+	useEffect(() => {
+		/** @todo Find a better way to get the permission status without using a timeout */
+		const permissionInterval = setTimeout(() => {
+			checkPermission()
+		}, 100)
+
+		return () => clearTimeout(permissionInterval)
+	}, [])
+
+	return {
+		/**
+		 * Current permission status of OneSignal
+		 */
+		status: permission,
+		checkPermission,
 	}
 }
